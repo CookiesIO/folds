@@ -1,4 +1,4 @@
-import { ComplexStyleRule, keyframes } from "@vanilla-extract/css";
+import { ComplexStyleRule, fallbackVar, keyframes } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { color } from "../../theme/color.css";
 import { config } from "../../theme/config.css";
@@ -13,10 +13,21 @@ const getVariant = (variant: ContainerColor): ComplexStyleRule => ({
 
 const ModalOpenAnime = keyframes({
   "0%": {
+    opacity: 0,
     transform: "translateY(5px)",
   },
   "100%": {
+    opacity: 1,
     transform: "translateY(0)",
+  },
+});
+
+const ModalBackdropAnime = keyframes({
+  "0%": {
+    opacity: "0",
+  },
+  "100%": {
+    opacity: "1",
   },
 });
 
@@ -24,12 +35,20 @@ export const Modal = recipe({
   base: [
     DefaultReset,
     {
+      margin: "auto",
       borderRadius: config.radii.R400,
       boxShadow: config.shadow.E300,
       width: "100%",
       height: "100%",
       overflow: "hidden",
       animation: `${ModalOpenAnime} 200ms`,
+    },
+    {
+      "::backdrop": {
+        backgroundColor: fallbackVar(color.Other.Overlay, "rgba(0 0 0 / 50%)"),
+        backdropFilter: "blur(1.5px)",
+        animation: `${ModalBackdropAnime} 200ms`,
+      },
     },
   ],
   variants: {

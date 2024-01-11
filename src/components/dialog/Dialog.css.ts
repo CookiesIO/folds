@@ -1,4 +1,4 @@
-import { ComplexStyleRule, keyframes } from "@vanilla-extract/css";
+import { ComplexStyleRule, fallbackVar, keyframes } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { color } from "../../theme/color.css";
 import { config } from "../../theme/config.css";
@@ -20,16 +20,33 @@ const DialogOpenAnime = keyframes({
   },
 });
 
+const DialogBackdropAnime = keyframes({
+  "0%": {
+    opacity: "0",
+  },
+  "100%": {
+    opacity: "1",
+  },
+});
+
 export const Dialog = recipe({
   base: [
     DefaultReset,
     {
+      margin: "auto",
       borderRadius: config.radii.R400,
       boxShadow: config.shadow.E400,
       width: "100%",
       maxWidth: config.size.DialogWidth,
       overflow: "hidden",
       animation: `${DialogOpenAnime} 200ms`,
+    },
+    {
+      "::backdrop": {
+        backgroundColor: fallbackVar(color.Other.Overlay, "rgba(0 0 0 / 50%)"),
+        backdropFilter: "blur(1.5px)",
+        animation: `${DialogBackdropAnime} 200ms`,
+      },
     },
   ],
   variants: {

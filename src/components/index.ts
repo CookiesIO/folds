@@ -19,7 +19,6 @@ export * from "./input";
 export * from "./line";
 export * from "./menu";
 export * from "./modal";
-export * from "./overlay";
 export * from "./pop-out";
 export * from "./portal";
 export * from "./progress-bar";
