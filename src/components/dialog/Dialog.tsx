@@ -22,7 +22,8 @@ export const Dialog = as<"dialog", css.DialogVariants & DialogProps>(
       else if (dialogRef.current.open && !open) dialogRef.current.close();
     }, [open]);
 
-    const handleClose = () => {
+    const handleClose = (evt: React.SyntheticEvent) => {
+      evt.preventDefault();
       if (open) onClose();
     };
 
