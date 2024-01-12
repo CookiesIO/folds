@@ -2502,8 +2502,10 @@ const Modal = as(
     }
   )
 );
+var PopOut$1 = "_1v6ozra0";
 const PopOut = as(
   ({
+    className,
     open,
     position = "Bottom",
     align = "Center",
@@ -2521,7 +2523,7 @@ const PopOut = as(
       const baseEl = dialogRef.current;
       if (!baseEl || !anchor)
         return;
-      const css = getRelativeFixedPosition(
+      const offsets = getRelativeFixedPosition(
         anchor.getBoundingClientRect(),
         position,
         align,
@@ -2529,11 +2531,11 @@ const PopOut = as(
         alignOffset,
         baseEl.getBoundingClientRect()
       );
-      baseEl.style.top = css.top;
-      baseEl.style.bottom = css.bottom;
-      baseEl.style.left = css.left;
-      baseEl.style.right = css.right;
-      baseEl.style.transform = css.transform;
+      baseEl.style.top = offsets.top;
+      baseEl.style.bottom = offsets.bottom;
+      baseEl.style.left = offsets.left;
+      baseEl.style.right = offsets.right;
+      baseEl.style.transform = offsets.transform;
     }, [position, align, offset, alignOffset]);
     useEffect(() => {
       window.addEventListener("resize", positionPopOut);
@@ -2547,7 +2549,17 @@ const PopOut = as(
     }, [open, positionPopOut]);
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       children(anchorRef),
-      /* @__PURE__ */ jsx(BaseDialog, { open, ...props, variant: "Clear", ref: composedRefs, children: content })
+      /* @__PURE__ */ jsx(
+        BaseDialog,
+        {
+          className: classNames(PopOut$1, className),
+          open,
+          ...props,
+          variant: "Clear",
+          ref: composedRefs,
+          children: content
+        }
+      )
     ] });
   }
 );

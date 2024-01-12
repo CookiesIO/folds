@@ -3,7 +3,9 @@ import { RecipeVariants } from "@vanilla-extract/recipes";
 export declare const BaseDialogContainer: string;
 export declare const BaseDialog: import("@vanilla-extract/recipes").RuntimeFn<{
     variant: {
-        Clear: {};
+        Clear: {
+            background: "none";
+        };
         Background: ComplexStyleRule;
         Surface: ComplexStyleRule;
         SurfaceVariant: ComplexStyleRule;

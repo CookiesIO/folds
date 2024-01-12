@@ -872,6 +872,7 @@
 }
 ._1kcdgt82 {
   flex-grow: 1;
+  background: none;
 }
 ._1kcdgt83 {
   margin: auto;
@@ -883,6 +884,9 @@
 }
 ._1kcdgt83[open] {
   display: flex;
+}
+._1kcdgt84 {
+  background: none;
 }
 ._1kcdgt85 {
   background-color: var(--oq6d070);
@@ -1419,6 +1423,9 @@
 }
 ._1fc5sz54 {
   height: unset;
+}._1v6ozra0 {
+  margin: -10px;
+  padding: 10px;
 }.w2djj94 {
   display: flex;
   overflow: hidden;
