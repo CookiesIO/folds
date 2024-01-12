@@ -78,7 +78,9 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
         onCancel={handleClose}
         onClick={onClick}
       >
-        <Container className={css.BaseDialogContainer}>{children}</Container>
+        <Container className={css.BaseDialogContainer} disabled={!open}>
+          {children}
+        </Container>
       </AsModal>
     );
   }
