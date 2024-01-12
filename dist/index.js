@@ -2400,7 +2400,7 @@ const BaseDialog = as(
         onClose: handleClose,
         onCancel: handleClose,
         onClick,
-        children: /* @__PURE__ */ jsx(Container, { className: BaseDialogContainer, children })
+        children: /* @__PURE__ */ jsx(Container, { className: BaseDialogContainer, disabled: !open, children })
       }
     );
   }
