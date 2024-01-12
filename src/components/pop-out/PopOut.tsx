@@ -6,10 +6,12 @@ import React, {
   useLayoutEffect,
   useRef,
 } from "react";
+import classNames from "classnames";
 import { as } from "../as";
 import { BaseDialog, PassthroughDialogProps } from "../base-dialog";
 import { Align, getRelativeFixedPosition, Position } from "../util";
 import { useComposeRefs } from "../../hooks/useComposeRefs";
+import * as css from "./PopOut.css";
 
 export interface PopOutProps extends PassthroughDialogProps {
   position?: Position;
@@ -23,6 +25,7 @@ export interface PopOutProps extends PassthroughDialogProps {
 export const PopOut = as<"dialog", PopOutProps>(
   (
     {
+      className,
       open,
       position = "Bottom",
       align = "Center",
@@ -43,7 +46,7 @@ export const PopOut = as<"dialog", PopOutProps>(
       const baseEl = dialogRef.current;
       if (!baseEl || !anchor) return;
 
-      const css = getRelativeFixedPosition(
+      const offsets = getRelativeFixedPosition(
         anchor.getBoundingClientRect(),
         position,
         align,
@@ -51,11 +54,11 @@ export const PopOut = as<"dialog", PopOutProps>(
         alignOffset,
         baseEl.getBoundingClientRect()
       );
-      baseEl.style.top = css.top;
-      baseEl.style.bottom = css.bottom;
-      baseEl.style.left = css.left;
-      baseEl.style.right = css.right;
-      baseEl.style.transform = css.transform;
+      baseEl.style.top = offsets.top;
+      baseEl.style.bottom = offsets.bottom;
+      baseEl.style.left = offsets.left;
+      baseEl.style.right = offsets.right;
+      baseEl.style.transform = offsets.transform;
     }, [position, align, offset, alignOffset]);
 
     useEffect(() => {
@@ -72,7 +75,13 @@ export const PopOut = as<"dialog", PopOutProps>(
     return (
       <>
         {children(anchorRef as MutableRefObject<null>)}
-        <BaseDialog open={open} {...props} variant="Clear" ref={composedRefs}>
+        <BaseDialog
+          className={classNames(css.PopOut, className)}
+          open={open}
+          {...props}
+          variant="Clear"
+          ref={composedRefs}
+        >
           {content}
         </BaseDialog>
       </>
