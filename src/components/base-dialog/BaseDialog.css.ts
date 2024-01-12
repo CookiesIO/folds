@@ -33,6 +33,7 @@ const BaseDialogBackdropAnime = keyframes({
 
 export const BaseDialogContainer = style({
   flexGrow: 1,
+  background: "none",
 });
 
 export const BaseDialog = recipe({
@@ -54,7 +55,9 @@ export const BaseDialog = recipe({
   ],
   variants: {
     variant: {
-      Clear: {},
+      Clear: {
+        background: "none",
+      },
       Background: getVariant("Background"),
       Surface: getVariant("Surface"),
       SurfaceVariant: getVariant("SurfaceVariant"),
