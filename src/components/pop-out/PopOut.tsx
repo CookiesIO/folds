@@ -6,13 +6,12 @@ import React, {
   useLayoutEffect,
   useRef,
 } from "react";
-import { config } from "../../theme";
 import { as } from "../as";
-import { Portal } from "../portal";
+import { BaseDialog, PassthroughDialogProps } from "../base-dialog";
 import { Align, getRelativeFixedPosition, Position } from "../util";
+import { useComposeRefs } from "../../hooks/useComposeRefs";
 
-export interface PopOutProps {
-  open: boolean;
+export interface PopOutProps extends PassthroughDialogProps {
   position?: Position;
   align?: Align;
   offset?: number;
@@ -20,10 +19,10 @@ export interface PopOutProps {
   content: ReactNode;
   children: (anchorRef: MutableRefObject<null>) => ReactNode;
 }
-export const PopOut = as<"div", PopOutProps>(
+
+export const PopOut = as<"dialog", PopOutProps>(
   (
     {
-      as: AsPopOut = "div",
       open,
       position = "Bottom",
       align = "Center",
@@ -31,18 +30,18 @@ export const PopOut = as<"div", PopOutProps>(
       alignOffset = 0,
       content,
       children,
-      style,
       ...props
     },
     ref
   ) => {
-    const anchorRef = useRef<unknown>(null);
-    const baseRef = useRef<HTMLDivElement>(null);
+    const anchorRef = useRef<HTMLElement | null>(null);
+    const dialogRef = useRef<HTMLDialogElement | null>(null);
+    const composedRefs = useComposeRefs([dialogRef, ref]);
 
     const positionPopOut = useCallback(() => {
-      const anchor = anchorRef.current as HTMLElement;
-      const baseEl = baseRef.current;
-      if (!baseEl) return;
+      const anchor = anchorRef.current;
+      const baseEl = dialogRef.current;
+      if (!baseEl || !anchor) return;
 
       const css = getRelativeFixedPosition(
         anchor.getBoundingClientRect(),
@@ -73,35 +72,9 @@ export const PopOut = as<"div", PopOutProps>(
     return (
       <>
         {children(anchorRef as MutableRefObject<null>)}
-        <Portal>
-          {open && (
-            <AsPopOut
-              style={{
-                position: "fixed",
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                zIndex: config.zIndex.Max,
-                ...style,
-              }}
-              {...props}
-              ref={ref}
-            >
-              <div
-                ref={baseRef}
-                style={{
-                  display: "inline-block",
-                  position: "fixed",
-                  maxWidth: "100vw",
-                  maxHeight: "100vh",
-                }}
-              >
-                {content}
-              </div>
-            </AsPopOut>
-          )}
-        </Portal>
+        <BaseDialog open={open} {...props} variant="Clear" ref={composedRefs}>
+          {content}
+        </BaseDialog>
       </>
     );
   }
