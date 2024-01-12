@@ -1,5 +1,5 @@
 import React from "react";
-export declare const Box: <T extends React.ElementType<any> = "div">(props: Omit<React.PropsWithChildren<React.ComponentPropsWithRef<T>>, "as"> & {
+export declare const Box: <T extends React.ElementType = "div">(props: Omit<React.PropsWithChildren<React.ComponentPropsWithRef<T>>, "as"> & {
     display?: "Flex" | "InlineFlex" | undefined;
     direction?: "Inherit" | "Row" | "RowReverse" | "Column" | "ColumnReverse" | undefined;
     wrap?: "Inherit" | "NoWrap" | "Wrap" | "WrapReverse" | undefined;

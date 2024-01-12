@@ -1,5 +1,5 @@
 import React from "react";
-export declare const RadioButton: React.ForwardRefExoticComponent<Omit<React.AllHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "size"> & {
+export declare const RadioButton: React.ForwardRefExoticComponent<Omit<React.AllHTMLAttributes<HTMLInputElement>, "size" | "type" | "onChange"> & {
     defaultChecked?: boolean | undefined;
     checked?: boolean | undefined;
 } & {

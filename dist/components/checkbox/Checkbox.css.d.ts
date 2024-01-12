@@ -19,6 +19,6 @@ export declare const Checkbox: import("@vanilla-extract/recipes").RuntimeFn<{
         Critical: ComplexStyleRule;
     };
 }>;
-export declare type CheckboxVariants = RecipeVariants<typeof Checkbox>;
+export type CheckboxVariants = RecipeVariants<typeof Checkbox>;
 export declare const CheckboxInput: string;
 export declare const CheckboxIcon: string;

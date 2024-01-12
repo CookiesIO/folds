@@ -58,4 +58,4 @@ export declare const Badge: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type BadgeVariants = RecipeVariants<typeof Badge>;
+export type BadgeVariants = RecipeVariants<typeof Badge>;

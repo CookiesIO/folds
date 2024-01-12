@@ -1,5 +1,5 @@
 import React from "react";
-export declare const Scroll: <T extends React.ElementType<any> = "div">(props: Omit<React.PropsWithChildren<React.ComponentPropsWithRef<T>>, "as"> & {
+export declare const Scroll: <T extends React.ElementType = "div">(props: Omit<React.PropsWithChildren<React.ComponentPropsWithRef<T>>, "as"> & {
     variant?: "Background" | "Surface" | "SurfaceVariant" | "Primary" | "Secondary" | "Success" | "Warning" | "Critical" | undefined;
     visibility?: "Always" | "Hover" | undefined;
     hideTrack?: boolean | undefined;

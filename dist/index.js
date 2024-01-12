@@ -1,14 +1,12 @@
 import { forwardRef, useCallback, useRef, useEffect, useLayoutEffect, useState } from "react";
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import classNames from "classnames";
+import FocusLock from "react-focus-lock";
 import { createPortal } from "react-dom";
-const color_css_ts_vanilla = "";
 var color = { Background: { Container: "var(--oq6d070)", ContainerHover: "var(--oq6d071)", ContainerActive: "var(--oq6d072)", ContainerLine: "var(--oq6d073)", OnContainer: "var(--oq6d074)" }, Surface: { Container: "var(--oq6d075)", ContainerHover: "var(--oq6d076)", ContainerActive: "var(--oq6d077)", ContainerLine: "var(--oq6d078)", OnContainer: "var(--oq6d079)" }, SurfaceVariant: { Container: "var(--oq6d07a)", ContainerHover: "var(--oq6d07b)", ContainerActive: "var(--oq6d07c)", ContainerLine: "var(--oq6d07d)", OnContainer: "var(--oq6d07e)" }, Primary: { Main: "var(--oq6d07f)", MainHover: "var(--oq6d07g)", MainActive: "var(--oq6d07h)", MainLine: "var(--oq6d07i)", OnMain: "var(--oq6d07j)", Container: "var(--oq6d07k)", ContainerHover: "var(--oq6d07l)", ContainerActive: "var(--oq6d07m)", ContainerLine: "var(--oq6d07n)", OnContainer: "var(--oq6d07o)" }, Secondary: { Main: "var(--oq6d07p)", MainHover: "var(--oq6d07q)", MainActive: "var(--oq6d07r)", MainLine: "var(--oq6d07s)", OnMain: "var(--oq6d07t)", Container: "var(--oq6d07u)", ContainerHover: "var(--oq6d07v)", ContainerActive: "var(--oq6d07w)", ContainerLine: "var(--oq6d07x)", OnContainer: "var(--oq6d07y)" }, Success: { Main: "var(--oq6d07z)", MainHover: "var(--oq6d0710)", MainActive: "var(--oq6d0711)", MainLine: "var(--oq6d0712)", OnMain: "var(--oq6d0713)", Container: "var(--oq6d0714)", ContainerHover: "var(--oq6d0715)", ContainerActive: "var(--oq6d0716)", ContainerLine: "var(--oq6d0717)", OnContainer: "var(--oq6d0718)" }, Warning: { Main: "var(--oq6d0719)", MainHover: "var(--oq6d071a)", MainActive: "var(--oq6d071b)", MainLine: "var(--oq6d071c)", OnMain: "var(--oq6d071d)", Container: "var(--oq6d071e)", ContainerHover: "var(--oq6d071f)", ContainerActive: "var(--oq6d071g)", ContainerLine: "var(--oq6d071h)", OnContainer: "var(--oq6d071i)" }, Critical: { Main: "var(--oq6d071j)", MainHover: "var(--oq6d071k)", MainActive: "var(--oq6d071l)", MainLine: "var(--oq6d071m)", OnMain: "var(--oq6d071n)", Container: "var(--oq6d071o)", ContainerHover: "var(--oq6d071p)", ContainerActive: "var(--oq6d071q)", ContainerLine: "var(--oq6d071r)", OnContainer: "var(--oq6d071s)" }, Other: { FocusRing: "var(--oq6d071t)", Shadow: "var(--oq6d071u)", Overlay: "var(--oq6d071v)" } };
 var lightTheme = "oq6d071w";
-const config_css_ts_vanilla = "";
 var config = { font: { Inter: "var(--_164xfge1)" }, fontSize: { D400: "var(--_164xfge2)", H1: "var(--_164xfge3)", H2: "var(--_164xfge4)", H3: "var(--_164xfge5)", H4: "var(--_164xfge6)", H5: "var(--_164xfge7)", H6: "var(--_164xfge8)", T500: "var(--_164xfge9)", T400: "var(--_164xfgea)", T300: "var(--_164xfgeb)", T200: "var(--_164xfgec)", B500: "var(--_164xfged)", B400: "var(--_164xfgee)", B300: "var(--_164xfgef)", L400: "var(--_164xfgeg)", O400: "var(--_164xfgeh)", C400: "var(--_164xfgei)" }, lineHeight: { D400: "var(--_164xfgej)", H1: "var(--_164xfgek)", H2: "var(--_164xfgel)", H3: "var(--_164xfgem)", H4: "var(--_164xfgen)", H5: "var(--_164xfgeo)", H6: "var(--_164xfgep)", T500: "var(--_164xfgeq)", T400: "var(--_164xfger)", T300: "var(--_164xfges)", T200: "var(--_164xfget)", B500: "var(--_164xfgeu)", B400: "var(--_164xfgev)", B300: "var(--_164xfgew)", L400: "var(--_164xfgex)", O400: "var(--_164xfgey)", C400: "var(--_164xfgez)" }, letterSpacing: { D400: "var(--_164xfge10)", H1: "var(--_164xfge11)", H2: "var(--_164xfge12)", H3: "var(--_164xfge13)", H4: "var(--_164xfge14)", H5: "var(--_164xfge15)", H6: "var(--_164xfge16)", T500: "var(--_164xfge17)", T400: "var(--_164xfge18)", T300: "var(--_164xfge19)", T200: "var(--_164xfge1a)", B500: "var(--_164xfge1b)", B400: "var(--_164xfge1c)", B300: "var(--_164xfge1d)", L400: "var(--_164xfge1e)", O400: "var(--_164xfge1f)", C400: "var(--_164xfge1g)" }, fontWeight: { W100: "var(--_164xfge1h)", W200: "var(--_164xfge1i)", W300: "var(--_164xfge1j)", W400: "var(--_164xfge1k)", W500: "var(--_164xfge1l)", W600: "var(--_164xfge1m)", W700: "var(--_164xfge1n)", W800: "var(--_164xfge1o)", W900: "var(--_164xfge1p)" }, space: { S0: "var(--_164xfge1q)", S100: "var(--_164xfge1r)", S200: "var(--_164xfge1s)", S300: "var(--_164xfge1t)", S400: "var(--_164xfge1u)", S500: "var(--_164xfge1v)", S600: "var(--_164xfge1w)", S700: "var(--_164xfge1x)" }, radii: { R0: "var(--_164xfge1y)", R300: "var(--_164xfge1z)", R400: "var(--_164xfge20)", R500: "var(--_164xfge21)", Round: "var(--_164xfge22)", Pill: "var(--_164xfge23)" }, borderWidth: { B0: "var(--_164xfge24)", B300: "var(--_164xfge25)", B400: "var(--_164xfge26)", B500: "var(--_164xfge27)", B600: "var(--_164xfge28)", B700: "var(--_164xfge29)" }, zIndex: { Z100: "var(--_164xfge2a)", Z200: "var(--_164xfge2b)", Z300: "var(--_164xfge2c)", Z400: "var(--_164xfge2d)", Max: "var(--_164xfge2e)" }, shadow: { E100: "var(--_164xfge2f)", E200: "var(--_164xfge2g)", E300: "var(--_164xfge2h)", E400: "var(--_164xfge2i)" }, size: { XInherit: "var(--_164xfge2j)", X50: "var(--_164xfge2k)", X100: "var(--_164xfge2l)", X200: "var(--_164xfge2m)", X300: "var(--_164xfge2n)", X400: "var(--_164xfge2o)", X500: "var(--_164xfge2p)", X600: "var(--_164xfge2q)", DialogWidth: "var(--_164xfge2r)", ModalHeight300: "var(--_164xfge2s)", ModalHeight400: "var(--_164xfge2t)", ModalHeight500: "var(--_164xfge2u)", ModalWidth300: "var(--_164xfge2v)", ModalWidth400: "var(--_164xfge2w)", ModalWidth500: "var(--_164xfge2x)", ModalDrawerWidth: "var(--_164xfge2y)" }, transition: {}, opacity: { P500: "var(--_164xfge2z)", P400: "var(--_164xfge30)", P300: "var(--_164xfge31)", Placeholder: "var(--_164xfge32)", Disabled: "var(--_164xfge33)" } };
 var configClass = "_164xfge0";
-const vars_css_ts_vanilla = "";
 var vars = { outline: { FocusRing: "var(--dw378b1)" } };
 var varsClass = "dw378b0";
 const pxToRem = (px) => parseFloat((px / 16).toFixed(4));
@@ -85,17 +83,30 @@ const getRelativeFixedPosition = (anchorRect, position, align, offset, alignOffs
 };
 const percent = (min, max, value) => (value - min) / (max - min) * 100;
 const as = (fc) => forwardRef(fc);
-const reset_css_ts_vanilla = "";
 var DefaultReset = "_1mqalmd1 _1mqalmd0";
 var TextReset = "_1mqalmd0";
-const selectorPreset_css_ts_vanilla = "";
 var Disabled = "_1bugis91";
 var FocusOutline = "_1bugis90";
-const variant_css_ts_vanilla = "";
 var CrossSizeVariant = { "50": "cpipac7", "100": "cpipac8", "200": "cpipac9", "300": "cpipaca", "400": "cpipacb", "500": "cpipacc", "600": "cpipacd", Inherit: "cpipac6" };
 var RadiiVariant = { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" };
-const Avatar_css_ts_vanilla = "";
+function _toPrimitive(input, hint) {
+  if (typeof input !== "object" || input === null)
+    return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== void 0) {
+    var res = prim.call(input, hint || "default");
+    if (typeof res !== "object")
+      return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return typeof key === "symbol" ? key : String(key);
+}
 function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value,
@@ -129,6 +140,13 @@ function _objectSpread2(target) {
   }
   return target;
 }
+function mapValues(input, fn) {
+  var result = {};
+  for (var _key in input) {
+    result[_key] = fn(input[_key], _key);
+  }
+  return result;
+}
 var shouldApplyCompound = (compoundCheck, selections, defaultVariants) => {
   for (var key of Object.keys(compoundCheck)) {
     var _selections$key;
@@ -138,32 +156,44 @@ var shouldApplyCompound = (compoundCheck, selections, defaultVariants) => {
   }
   return true;
 };
-var createRuntimeFn = (config2) => (options) => {
-  var className = config2.defaultClassName;
-  var selections = _objectSpread2(_objectSpread2({}, config2.defaultVariants), options);
-  for (var variantName in selections) {
-    var _selections$variantNa;
-    var variantSelection = (_selections$variantNa = selections[variantName]) !== null && _selections$variantNa !== void 0 ? _selections$variantNa : config2.defaultVariants[variantName];
-    if (variantSelection != null) {
-      var selection = variantSelection;
-      if (typeof selection === "boolean") {
-        selection = selection === true ? "true" : "false";
-      }
-      var selectionClassName = (
-        // @ts-expect-error
-        config2.variantClassNames[variantName][selection]
-      );
-      if (selectionClassName) {
-        className += " " + selectionClassName;
+var createRuntimeFn = (config2) => {
+  var runtimeFn = (options) => {
+    var className = config2.defaultClassName;
+    var selections = _objectSpread2(_objectSpread2({}, config2.defaultVariants), options);
+    for (var variantName in selections) {
+      var _selections$variantNa;
+      var variantSelection = (_selections$variantNa = selections[variantName]) !== null && _selections$variantNa !== void 0 ? _selections$variantNa : config2.defaultVariants[variantName];
+      if (variantSelection != null) {
+        var selection = variantSelection;
+        if (typeof selection === "boolean") {
+          selection = selection === true ? "true" : "false";
+        }
+        var selectionClassName = (
+          // @ts-expect-error
+          config2.variantClassNames[variantName][selection]
+        );
+        if (selectionClassName) {
+          className += " " + selectionClassName;
+        }
       }
     }
-  }
-  for (var [compoundCheck, compoundClassName] of config2.compoundVariants) {
-    if (shouldApplyCompound(compoundCheck, selections, config2.defaultVariants)) {
-      className += " " + compoundClassName;
+    for (var [compoundCheck, compoundClassName] of config2.compoundVariants) {
+      if (shouldApplyCompound(compoundCheck, selections, config2.defaultVariants)) {
+        className += " " + compoundClassName;
+      }
     }
-  }
-  return className;
+    return className;
+  };
+  runtimeFn.variants = () => Object.keys(config2.variantClassNames);
+  runtimeFn.classNames = {
+    get base() {
+      return config2.defaultClassName.split(" ")[0];
+    },
+    get variants() {
+      return mapValues(config2.variantClassNames, (classNames2) => mapValues(classNames2, (className) => className.split(" ")[0]));
+    }
+  };
+  return runtimeFn;
 };
 var Avatar$1 = createRuntimeFn({ defaultClassName: "_1684mq51 _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { size: { "200": "_1684mq52", "300": "_1684mq53", "400": "_1684mq54", "500": "_1684mq55" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { size: "400", radii: "400" }, compoundVariants: [] });
 var AvatarFallback$1 = "_1684mq5d _1mqalmd1 _1mqalmd0";
@@ -175,7 +205,6 @@ const AvatarImage = as(({ as: AsAvatarImage = "img", className, ...props }, ref)
 const AvatarFallback = as(
   ({ as: AsAvatarFallback = "span", className, ...props }, ref) => /* @__PURE__ */ jsx(AsAvatarFallback, { className: classNames(AvatarFallback$1, className), ...props, ref })
 );
-const Badge_css_ts_vanilla = "";
 var Badge$1 = createRuntimeFn({ defaultClassName: "_13qe89m6 _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { size: { "200": "_13qe89m7", "300": "_13qe89m8", "400": "_13qe89m9", "500": "_13qe89ma" }, variant: { Primary: "_13qe89mb", Secondary: "_13qe89mc", Success: "_13qe89md", Warning: "_13qe89me", Critical: "_13qe89mf" }, fill: { Solid: "_13qe89mg", Soft: "_13qe89mh", None: "_13qe89mi" }, outlined: { true: "_13qe89mj" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { size: "400", variant: "Primary", fill: "Soft", radii: "300" }, compoundVariants: [] });
 const Badge = as(
   ({ as: AsBadge = "span", className, size, variant, fill, radii, outlined, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -187,7 +216,6 @@ const Badge = as(
     }
   )
 );
-const Box_css_ts_vanilla = "";
 var Box$1 = createRuntimeFn({ defaultClassName: "prxiv40 _1mqalmd1 _1mqalmd0", variantClassNames: { display: { Flex: "prxiv41", InlineFlex: "prxiv42" }, direction: { Inherit: "prxiv43", Row: "prxiv44", RowReverse: "prxiv45", Column: "prxiv46", ColumnReverse: "prxiv47" }, wrap: { Inherit: "prxiv48", NoWrap: "prxiv49", Wrap: "prxiv4a", WrapReverse: "prxiv4b" }, justifyContent: { Inherit: "prxiv4c", Start: "prxiv4d", End: "prxiv4e", Stretch: "prxiv4f", Center: "prxiv4g", Baseline: "prxiv4h", SpaceBetween: "prxiv4i", SpaceAround: "prxiv4j", SpaceEvenly: "prxiv4k" }, justifyItems: { Inherit: "prxiv4l", Start: "prxiv4m", End: "prxiv4n", Stretch: "prxiv4o", Center: "prxiv4p", Baseline: "prxiv4q" }, justifySelf: { Inherit: "prxiv4r", Start: "prxiv4s", End: "prxiv4t", Stretch: "prxiv4u", Center: "prxiv4v", Baseline: "prxiv4w" }, alignContent: { Inherit: "prxiv4x", Start: "prxiv4y", End: "prxiv4z", Stretch: "prxiv410", Center: "prxiv411", Baseline: "prxiv412", SpaceBetween: "prxiv413", SpaceAround: "prxiv414", SpaceEvenly: "prxiv415" }, alignItems: { Inherit: "prxiv416", Start: "prxiv417", End: "prxiv418", Stretch: "prxiv419", Center: "prxiv41a", Baseline: "prxiv41b" }, alignSelf: { Inherit: "prxiv41c", Start: "prxiv41d", End: "prxiv41e", Stretch: "prxiv41f", Center: "prxiv41g", Baseline: "prxiv41h" }, gap: { "0": "prxiv41i", "100": "prxiv41j", "200": "prxiv41k", "300": "prxiv41l", "400": "prxiv41m", "500": "prxiv41n", "600": "prxiv41o", "700": "prxiv41p", Inherit: "prxiv41q" }, grow: { No: "prxiv41r", Yes: "prxiv41s" }, shrink: { No: "prxiv41t", Yes: "prxiv41u" }, basis: { No: "prxiv41v", Yes: "prxiv41w" } }, defaultVariants: { display: "Flex" }, compoundVariants: [] });
 const Box = as(
   ({
@@ -233,7 +261,6 @@ const Box = as(
     }
   )
 );
-const Button_css_ts_vanilla = "";
 var Button$1 = createRuntimeFn({ defaultClassName: "epr39zd _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { size: { "300": "epr39ze", "400": "epr39zf", "500": "epr39zg" }, variant: { Primary: "epr39zh", Secondary: "epr39zi", Success: "epr39zj", Warning: "epr39zk", Critical: "epr39zl" }, fill: { Solid: "epr39zm", Soft: "epr39zn", None: "epr39zo" }, outlined: { true: "epr39zp" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { size: "400", variant: "Primary", fill: "Solid", radii: "400" }, compoundVariants: [] });
 const Button = as(
   ({
@@ -264,7 +291,6 @@ const Button = as(
     }
   )
 );
-const Icon_css_ts_vanilla = "";
 var Icon$1 = createRuntimeFn({ defaultClassName: "_19nrl2w0 _1mqalmd1 _1mqalmd0", variantClassNames: { size: { "50": "cpipac7", "100": "cpipac8", "200": "cpipac9", "300": "cpipaca", "400": "cpipacb", "500": "cpipacc", "600": "cpipacd", Inherit: "cpipac6" } }, defaultVariants: { size: "400" }, compoundVariants: [] });
 const Icon = forwardRef(
   ({ className, size, filled = false, src, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -2255,7 +2281,6 @@ const Icons = {
     }
   )
 };
-const Checkbox_css_ts_vanilla = "";
 var Checkbox$1 = createRuntimeFn({ defaultClassName: "_1ke4j9q2 _1mqalmd1 _1mqalmd0", variantClassNames: { size: { "50": "cpipac7", "100": "cpipac8", "200": "cpipac9", "300": "cpipaca", "400": "cpipacb", "500": "cpipacc", "600": "cpipacd", Inherit: "cpipac6" }, variant: { Primary: "_1ke4j9qb", Secondary: "_1ke4j9qc", Success: "_1ke4j9qd", Warning: "_1ke4j9qe", Critical: "_1ke4j9qf" } }, defaultVariants: { size: "400", variant: "Secondary" }, compoundVariants: [] });
 var CheckboxIcon = "_1ke4j9qh";
 var CheckboxInput = "_1ke4j9qg _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91";
@@ -2265,7 +2290,6 @@ const Checkbox = forwardRef(
     /* @__PURE__ */ jsx(Icon, { className: CheckboxIcon, "aria-hidden": true, size, src: Icons.Check })
   ] })
 );
-const Chip_css_ts_vanilla = "";
 var Chip$1 = createRuntimeFn({ defaultClassName: "_1bv8u1w6 _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { variant: { Background: "_1bv8u1w7", Surface: "_1bv8u1w8", SurfaceVariant: "_1bv8u1w9", Primary: "_1bv8u1wa", Secondary: "_1bv8u1wb", Success: "_1bv8u1wc", Warning: "_1bv8u1wd", Critical: "_1bv8u1we" }, size: { "400": "_1bv8u1wf", "500": "_1bv8u1wg" }, outlined: { true: "_1bv8u1wh" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { variant: "Surface", size: "400", radii: "400" }, compoundVariants: [] });
 const Chip = as(
   ({
@@ -2303,8 +2327,8 @@ const Chip = as(
     }
   )
 );
-const Dialog_css_ts_vanilla = "";
-var Dialog$1 = createRuntimeFn({ defaultClassName: "_5z5e2h2 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "_5z5e2h3", Surface: "_5z5e2h4", SurfaceVariant: "_5z5e2h5", Primary: "_5z5e2h6", Secondary: "_5z5e2h7", Success: "_5z5e2h8", Warning: "_5z5e2h9", Critical: "_5z5e2ha" } }, defaultVariants: { variant: "Surface" }, compoundVariants: [] });
+var BaseDialog$1 = createRuntimeFn({ defaultClassName: "_1kcdgt83 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Clear: "_1kcdgt84", Background: "_1kcdgt85", Surface: "_1kcdgt86", SurfaceVariant: "_1kcdgt87", Primary: "_1kcdgt88", Secondary: "_1kcdgt89", Success: "_1kcdgt8a", Warning: "_1kcdgt8b", Critical: "_1kcdgt8c" }, backdrop: { true: "_1kcdgt8d" } }, defaultVariants: { variant: "Surface", backdrop: false }, compoundVariants: [] });
+var BaseDialogContainer = "_1kcdgt82";
 const useComposeRefs = (refs) => useCallback(
   (element) => {
     refs.forEach((ref) => {
@@ -2322,24 +2346,41 @@ const useComposeRefs = (refs) => useCallback(
   // eslint-disable-next-line react-hooks/exhaustive-deps
   refs
 );
-const Dialog = as(
-  ({ as: AsModal = "dialog", className, variant, open, onClose, ...props }, ref) => {
+const BaseDialog = as(
+  ({
+    as: AsModal = "dialog",
+    className,
+    variant,
+    backdrop,
+    open,
+    modal = true,
+    focusLock = true,
+    onClose,
+    onClick: propOnClick,
+    children,
+    ...props
+  }, ref) => {
     const dialogRef = useRef(null);
     const composedRefs = useComposeRefs([dialogRef, ref]);
     useEffect(() => {
       if (!dialogRef.current)
         return;
-      if (!dialogRef.current.open && open)
-        dialogRef.current.showModal();
-      else if (dialogRef.current.open && !open)
+      if (!dialogRef.current.open && open) {
+        if (modal) {
+          dialogRef.current.showModal();
+        } else {
+          dialogRef.current.show();
+        }
+      } else if (dialogRef.current.open && !open)
         dialogRef.current.close();
-    }, [open]);
+    }, [open, modal]);
     const handleClose = (evt) => {
       evt.preventDefault();
       if (open)
         onClose();
     };
     const onClick = (evt) => {
+      propOnClick == null ? void 0 : propOnClick(evt);
       if (evt.target !== evt.currentTarget)
         return;
       const x = evt.clientX;
@@ -2349,20 +2390,23 @@ const Dialog = as(
       if (outOfBounds)
         onClose();
     };
+    const Container = focusLock ? FocusLock : "div";
     return /* @__PURE__ */ jsx(
       AsModal,
       {
-        className: classNames(Dialog$1({ variant }), className),
+        className: classNames(BaseDialog$1({ variant, backdrop }), className),
         ...props,
         ref: composedRefs,
         onClose: handleClose,
         onCancel: handleClose,
-        onClick
+        onClick,
+        children: /* @__PURE__ */ jsx(Container, { className: BaseDialogContainer, children })
       }
     );
   }
 );
-const Header_css_ts_vanilla = "";
+var Dialog$1 = "_5z5e2h0 _1mqalmd1 _1mqalmd0";
+const Dialog = as(({ className, ...props }, ref) => /* @__PURE__ */ jsx(BaseDialog, { backdrop: true, className: classNames(Dialog$1, className), ...props, ref }));
 var Header$1 = createRuntimeFn({ defaultClassName: "hru6be0 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "hru6be1", Surface: "hru6be2", SurfaceVariant: "hru6be3", Primary: "hru6be4", Secondary: "hru6be5", Success: "hru6be6", Warning: "hru6be7", Critical: "hru6be8" }, size: { "300": "hru6be9", "400": "hru6bea", "500": "hru6beb", "600": "hru6bec", "700": "hru6bed" } }, defaultVariants: { variant: "Surface", size: "400" }, compoundVariants: [] });
 const Header = as(
   ({ as: AsHeader = "header", className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -2374,7 +2418,6 @@ const Header = as(
     }
   )
 );
-const IconButton_css_ts_vanilla = "";
 var IconButton$1 = createRuntimeFn({ defaultClassName: "brs7ce5 _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { size: { "300": "brs7ce6", "400": "brs7ce7", "500": "brs7ce8", "600": "brs7ce9" }, variant: { Background: "brs7cea", Surface: "brs7ceb", SurfaceVariant: "brs7cec", Primary: "brs7ced", Secondary: "brs7cee", Success: "brs7cef", Warning: "brs7ceg", Critical: "brs7ceh" }, outlined: { true: "brs7cei" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { size: "400", variant: "Surface", radii: "400" }, compoundVariants: [] });
 const IconButton = as(
   ({ as: AsIconButton = "button", className, size, variant, radii, outlined, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -2386,7 +2429,6 @@ const IconButton = as(
     }
   )
 );
-const Input_css_ts_vanilla = "";
 var Input$1 = createRuntimeFn({ defaultClassName: "_1rrvnjm8 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "_1rrvnjm9", Surface: "_1rrvnjma", SurfaceVariant: "_1rrvnjmb", Primary: "_1rrvnjmc", Secondary: "_1rrvnjmd", Success: "_1rrvnjme", Warning: "_1rrvnjmf", Critical: "_1rrvnjmg" }, size: { "300": "_1rrvnjmh", "400": "_1rrvnjmi", "500": "_1rrvnjmj" }, outlined: { true: "_1rrvnjmk" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { variant: "Background", size: "400", radii: "400" }, compoundVariants: [] });
 var InputInput = "_1rrvnjmr _1mqalmd1 _1mqalmd0 _1bugis91";
 const Input = forwardRef(
@@ -2405,7 +2447,6 @@ const Input = forwardRef(
     }
   )
 );
-const Line_css_ts_vanilla = "";
 var Line$1 = createRuntimeFn({ defaultClassName: "_1yan8dd1 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Inherit: "_1yan8dd2", Background: "_1yan8dd3", Surface: "_1yan8dd4", SurfaceVariant: "_1yan8dd5", Primary: "_1yan8dd6", Secondary: "_1yan8dd7", Success: "_1yan8dd8", Warning: "_1yan8dd9", Critical: "_1yan8dda" }, direction: { Horizontal: "_1yan8ddb", Vertical: "_1yan8ddc" }, size: { "300": "_1yan8ddd", "400": "_1yan8dde", "500": "_1yan8ddf", "600": "_1yan8ddg", "700": "_1yan8ddh" } }, defaultVariants: { variant: "Surface", direction: "Horizontal", size: "400" }, compoundVariants: [] });
 const Line = as(
   ({ as: AsLine = "div", className, variant, direction, size, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -2417,7 +2458,6 @@ const Line = as(
     }
   )
 );
-const MenuItem_css_ts_vanilla = "";
 var MenuItem$1 = createRuntimeFn({ defaultClassName: "_13tt0gb6 _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { variant: { Background: "_13tt0gb7", Surface: "_13tt0gb8", SurfaceVariant: "_13tt0gb9", Primary: "_13tt0gba", Secondary: "_13tt0gbb", Success: "_13tt0gbc", Warning: "_13tt0gbd", Critical: "_13tt0gbe" }, size: { "300": "_13tt0gbf", "400": "_13tt0gbg" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { variant: "Surface", size: "400", radii: "0" }, compoundVariants: [] });
 const MenuItem = as(
   ({
@@ -2446,57 +2486,24 @@ const MenuItem = as(
     }
   )
 );
-const Menu_css_ts_vanilla = "";
 var Menu$1 = createRuntimeFn({ defaultClassName: "_1fptcza0 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "_1fptcza1", Surface: "_1fptcza2", SurfaceVariant: "_1fptcza3", Primary: "_1fptcza4", Secondary: "_1fptcza5", Success: "_1fptcza6", Warning: "_1fptcza7", Critical: "_1fptcza8" } }, defaultVariants: { variant: "Surface" }, compoundVariants: [] });
 const Menu = as(
   ({ as: AsMenu = "div", className, variant, ...props }, ref) => /* @__PURE__ */ jsx(AsMenu, { className: classNames(Menu$1({ variant }), className), ...props, ref })
 );
-const Modal_css_ts_vanilla = "";
-var Modal$1 = createRuntimeFn({ defaultClassName: "_1fc5sz52 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "_1fc5sz53", Surface: "_1fc5sz54", SurfaceVariant: "_1fc5sz55", Primary: "_1fc5sz56", Secondary: "_1fc5sz57", Success: "_1fc5sz58", Warning: "_1fc5sz59", Critical: "_1fc5sz5a" }, size: { "300": "_1fc5sz5b", "400": "_1fc5sz5c", "500": "_1fc5sz5d" }, flexHeight: { true: "_1fc5sz5e" } }, defaultVariants: { variant: "Surface", size: "400" }, compoundVariants: [] });
+var Modal$1 = createRuntimeFn({ defaultClassName: "_1fc5sz50 _1mqalmd1 _1mqalmd0", variantClassNames: { size: { "300": "_1fc5sz51", "400": "_1fc5sz52", "500": "_1fc5sz53" }, flexHeight: { true: "_1fc5sz54" } }, defaultVariants: { size: "400" }, compoundVariants: [] });
 const Modal = as(
-  ({ as: AsModal = "dialog", className, variant, size, flexHeight, open, onClose, ...props }, ref) => {
-    const dialogRef = useRef(null);
-    const composedRefs = useComposeRefs([dialogRef, ref]);
-    useEffect(() => {
-      if (!dialogRef.current)
-        return;
-      if (!dialogRef.current.open && open)
-        dialogRef.current.showModal();
-      else if (dialogRef.current.open && !open)
-        dialogRef.current.close();
-    }, [open]);
-    const handleClose = (evt) => {
-      evt.preventDefault();
-      if (open)
-        onClose();
-    };
-    const onClick = (evt) => {
-      if (evt.target !== evt.currentTarget)
-        return;
-      const x = evt.clientX;
-      const y = evt.clientY;
-      const bounds = evt.currentTarget.getBoundingClientRect();
-      const outOfBounds = x < bounds.left || x > bounds.right || y < bounds.top || y > bounds.bottom;
-      if (outOfBounds)
-        onClose();
-    };
-    return /* @__PURE__ */ jsx(
-      AsModal,
-      {
-        className: classNames(Modal$1({ variant, size, flexHeight }), className),
-        ...props,
-        ref: composedRefs,
-        onClose: handleClose,
-        onCancel: handleClose,
-        onClick
-      }
-    );
-  }
+  ({ className, size, flexHeight, ...props }, ref) => /* @__PURE__ */ jsx(
+    BaseDialog,
+    {
+      backdrop: true,
+      className: classNames(Modal$1({ size, flexHeight }), className),
+      ...props,
+      ref
+    }
+  )
 );
-const Portal = ({ container, children }) => /* @__PURE__ */ jsx(Fragment, { children: createPortal(children, container ?? document.body) });
 const PopOut = as(
   ({
-    as: AsPopOut = "div",
     open,
     position = "Bottom",
     align = "Center",
@@ -2504,15 +2511,15 @@ const PopOut = as(
     alignOffset = 0,
     content,
     children,
-    style,
     ...props
   }, ref) => {
     const anchorRef = useRef(null);
-    const baseRef = useRef(null);
+    const dialogRef = useRef(null);
+    const composedRefs = useComposeRefs([dialogRef, ref]);
     const positionPopOut = useCallback(() => {
       const anchor = anchorRef.current;
-      const baseEl = baseRef.current;
-      if (!baseEl)
+      const baseEl = dialogRef.current;
+      if (!baseEl || !anchor)
         return;
       const css = getRelativeFixedPosition(
         anchor.getBoundingClientRect(),
@@ -2540,39 +2547,11 @@ const PopOut = as(
     }, [open, positionPopOut]);
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       children(anchorRef),
-      /* @__PURE__ */ jsx(Portal, { children: open && /* @__PURE__ */ jsx(
-        AsPopOut,
-        {
-          style: {
-            position: "fixed",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            zIndex: config.zIndex.Max,
-            ...style
-          },
-          ...props,
-          ref,
-          children: /* @__PURE__ */ jsx(
-            "div",
-            {
-              ref: baseRef,
-              style: {
-                display: "inline-block",
-                position: "fixed",
-                maxWidth: "100vw",
-                maxHeight: "100vh"
-              },
-              children: content
-            }
-          )
-        }
-      ) })
+      /* @__PURE__ */ jsx(BaseDialog, { open, ...props, variant: "Clear", ref: composedRefs, children: content })
     ] });
   }
 );
-const ProgressBar_css_ts_vanilla = "";
+const Portal = ({ container, children }) => /* @__PURE__ */ jsx(Fragment, { children: createPortal(children, container ?? document.body) });
 var ProgressBar$1 = createRuntimeFn({ defaultClassName: "w2djj94 _1mqalmd1 _1mqalmd0 _1bugis91", variantClassNames: { size: { "300": "w2djj95", "400": "w2djj96", "500": "w2djj97" }, variant: { Primary: "w2djj98", Secondary: "w2djj99", Success: "w2djj9a", Warning: "w2djj9b", Critical: "w2djj9c" }, fill: { Solid: "w2djj9d", Soft: "w2djj9e", None: "w2djj9f" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" }, outlined: { true: "w2djj9m" } }, defaultVariants: { variant: "Secondary", size: "400", fill: "Soft", radii: "Pill" }, compoundVariants: [] });
 var ProgressBarFill = "w2djj9n _1mqalmd1 _1mqalmd0";
 const ProgressBar = as(
@@ -2602,7 +2581,6 @@ const ProgressBar = as(
     }
   )
 );
-const RadioButton_css_ts_vanilla = "";
 var RadioButton$1 = createRuntimeFn({ defaultClassName: "_1agxj9w0 _1mqalmd1 _1mqalmd0 _1bugis90 _1bugis91", variantClassNames: { variant: { Primary: "_1agxj9w1", Secondary: "_1agxj9w2", Success: "_1agxj9w3", Warning: "_1agxj9w4", Critical: "_1agxj9w5" }, size: { "50": "cpipac7", "100": "cpipac8", "200": "cpipac9", "300": "cpipaca", "400": "cpipacb", "500": "cpipacc", "600": "cpipacd", Inherit: "cpipac6" } }, defaultVariants: { variant: "Secondary", size: "400" }, compoundVariants: [] });
 const RadioButton = forwardRef(
   ({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -2615,7 +2593,6 @@ const RadioButton = forwardRef(
     }
   )
 );
-const Scroll_css_ts_vanilla = "";
 var Scroll$1 = createRuntimeFn({ defaultClassName: "_4yxtfd2 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "_4yxtfd3", Surface: "_4yxtfd4", SurfaceVariant: "_4yxtfd5", Primary: "_4yxtfd6", Secondary: "_4yxtfd7", Success: "_4yxtfd8", Warning: "_4yxtfd9", Critical: "_4yxtfda" }, visibility: { Always: "_4yxtfdb", Hover: "_4yxtfdc" }, hideTrack: { true: "_4yxtfdd" }, size: { "0": "_4yxtfde", "300": "_4yxtfdf", "400": "_4yxtfdg" }, direction: { Horizontal: "_4yxtfdh", Vertical: "_4yxtfdi", Both: "_4yxtfdj" } }, defaultVariants: { variant: "Surface", visibility: "Always", size: "400", direction: "Vertical" }, compoundVariants: [[{ direction: "Horizontal", size: "300" }, "_4yxtfdk"], [{ direction: "Horizontal", size: "400" }, "_4yxtfdl"], [{ direction: "Vertical", size: "300" }, "_4yxtfdm"], [{ direction: "Vertical", size: "400" }, "_4yxtfdn"], [{ direction: "Both", size: "300" }, "_4yxtfdo"], [{ direction: "Both", size: "400" }, "_4yxtfdp"]] });
 const Scroll = as(
   ({ as: AsScroll = "div", className, variant, visibility, hideTrack, size, direction, ...props }, ref) => {
@@ -2665,7 +2642,6 @@ const Scroll = as(
     );
   }
 );
-const Spinner_css_ts_vanilla = "";
 var Spinner$1 = createRuntimeFn({ defaultClassName: "_31czpk7 _1mqalmd1 _1mqalmd0", variantClassNames: { size: { "50": "cpipac7", "100": "cpipac8", "200": "cpipac9", "300": "cpipaca", "400": "cpipacb", "500": "cpipacc", "600": "cpipacd", Inherit: "cpipac6" }, variant: { Primary: "_31czpkg", Secondary: "_31czpkh", Success: "_31czpki", Warning: "_31czpkj", Critical: "_31czpkk" }, fill: { Solid: "_31czpkl", Soft: "_31czpkm" } }, defaultVariants: { size: "400", variant: "Secondary", fill: "Soft" }, compoundVariants: [] });
 var SpinnerInner = "_31czpkp";
 var SpinnerOuter = "_31czpko";
@@ -2706,7 +2682,6 @@ const Spinner = as(
     }
   )
 );
-const Switch_css_ts_vanilla = "";
 var Switch$1 = createRuntimeFn({ defaultClassName: "_1mqalmd1 _1mqalmd0 _1gp7uix2 _1bugis90 _1bugis91", variantClassNames: { variant: { Primary: "_1gp7uix4", Secondary: "_1gp7uix5", Success: "_1gp7uix6", Warning: "_1gp7uix7", Critical: "_1gp7uix8" } }, defaultVariants: { variant: "Primary" }, compoundVariants: [] });
 var SwitchThumb = "_1gp7uix9 _1mqalmd1 _1mqalmd0";
 const Switch = forwardRef(
@@ -2727,7 +2702,6 @@ const Switch = forwardRef(
     );
   }
 );
-const Text_css_ts_vanilla = "";
 var Text$1 = createRuntimeFn({ defaultClassName: "_1xny9xl0 _1mqalmd1 _1mqalmd0", variantClassNames: { size: { Inherit: "_1xny9xl1", D400: "_1xny9xl2", H1: "_1xny9xl3", H2: "_1xny9xl4", H3: "_1xny9xl5", H4: "_1xny9xl6", H5: "_1xny9xl7", H6: "_1xny9xl8", T500: "_1xny9xl9", T400: "_1xny9xla", T300: "_1xny9xlb", T200: "_1xny9xlc", B500: "_1xny9xld", B400: "_1xny9xle", B300: "_1xny9xlf", L400: "_1xny9xlg", O400: "_1xny9xlh", C400: "_1xny9xli" }, align: { Left: "_1xny9xlj", Center: "_1xny9xlk", Right: "_1xny9xll", Justify: "_1xny9xlm" }, truncate: { true: "_1xny9xln" }, priority: { "300": "_1xny9xlo", "400": "_1xny9xlp", "500": "_1xny9xlq", Inherit: "_1xny9xlr", Initial: "_1xny9xls" } }, defaultVariants: { size: "T400", priority: "Inherit" }, compoundVariants: [] });
 const Text = as(
   ({ as: AsText = "p", className, size, truncate, align, priority, ...props }, ref) => /* @__PURE__ */ jsx(
@@ -2739,7 +2713,6 @@ const Text = as(
     }
   )
 );
-const Tooltip_css_ts_vanilla = "";
 var Tooltip$1 = createRuntimeFn({ defaultClassName: "_6plmi21 _1mqalmd1 _1mqalmd0", variantClassNames: { variant: { Background: "_6plmi22", Surface: "_6plmi23", SurfaceVariant: "_6plmi24", Primary: "_6plmi25", Secondary: "_6plmi26", Success: "_6plmi27", Warning: "_6plmi28", Critical: "_6plmi29" }, radii: { "0": "cpipac1", "300": "cpipac2", "400": "cpipac3", "500": "cpipac4", Inherit: "cpipac0", Pill: "cpipac5" } }, defaultVariants: { variant: "Surface", radii: "400" }, compoundVariants: [] });
 const Tooltip = as(
   ({ as: AsTooltip = "div", className, variant, radii, ...props }, ref) => /* @__PURE__ */ jsx(

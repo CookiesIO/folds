@@ -43,4 +43,4 @@ export declare const Chip: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type ChipVariants = RecipeVariants<typeof Chip>;
+export type ChipVariants = RecipeVariants<typeof Chip>;

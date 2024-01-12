@@ -1,0 +1,32 @@
+import React from "react";
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, Omit<any, "as"> & {
+    display?: "Flex" | "InlineFlex" | undefined;
+    direction?: "Inherit" | "Row" | "RowReverse" | "Column" | "ColumnReverse" | undefined;
+    wrap?: "Inherit" | "NoWrap" | "Wrap" | "WrapReverse" | undefined;
+    justifyContent?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | "SpaceBetween" | "SpaceAround" | "SpaceEvenly" | undefined;
+    justifyItems?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    justifySelf?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    alignContent?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | "SpaceBetween" | "SpaceAround" | "SpaceEvenly" | undefined;
+    alignItems?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    alignSelf?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    gap?: "0" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "Inherit" | undefined;
+    grow?: "No" | "Yes" | undefined;
+    shrink?: "No" | "Yes" | undefined;
+    basis?: "No" | "Yes" | undefined;
+} & import("..").AsProp<React.ElementType>>;
+export default _default;
+export declare const FlexBox: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0fc72a6d").R, Omit<any, "as"> & {
+    display?: "Flex" | "InlineFlex" | undefined;
+    direction?: "Inherit" | "Row" | "RowReverse" | "Column" | "ColumnReverse" | undefined;
+    wrap?: "Inherit" | "NoWrap" | "Wrap" | "WrapReverse" | undefined;
+    justifyContent?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | "SpaceBetween" | "SpaceAround" | "SpaceEvenly" | undefined;
+    justifyItems?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    justifySelf?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    alignContent?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | "SpaceBetween" | "SpaceAround" | "SpaceEvenly" | undefined;
+    alignItems?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    alignSelf?: "Start" | "Center" | "End" | "Inherit" | "Stretch" | "Baseline" | undefined;
+    gap?: "0" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "Inherit" | undefined;
+    grow?: "No" | "Yes" | undefined;
+    shrink?: "No" | "Yes" | undefined;
+    basis?: "No" | "Yes" | undefined;
+} & import("..").AsProp<React.ElementType>>;

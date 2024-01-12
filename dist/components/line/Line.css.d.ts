@@ -53,4 +53,4 @@ export declare const Line: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type LineVariants = RecipeVariants<typeof Line>;
+export type LineVariants = RecipeVariants<typeof Line>;

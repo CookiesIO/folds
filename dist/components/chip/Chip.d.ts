@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
-declare type ChipProps = {
+type ChipProps = {
     before?: ReactNode;
     after?: ReactNode;
 };
-export declare const Chip: <T extends React.ElementType<any> = "button">(props: import("..").AsOutProps<T, ChipProps & {
+export declare const Chip: <T extends React.ElementType = "button">(props: import("..").AsOutProps<T, ChipProps & {
     variant?: "Background" | "Surface" | "SurfaceVariant" | "Primary" | "Secondary" | "Success" | "Warning" | "Critical" | undefined;
     size?: "400" | "500" | undefined;
     outlined?: boolean | undefined;

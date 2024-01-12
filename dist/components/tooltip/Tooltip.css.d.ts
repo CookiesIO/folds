@@ -20,4 +20,4 @@ export declare const Tooltip: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type TooltipVariants = RecipeVariants<typeof Tooltip>;
+export type TooltipVariants = RecipeVariants<typeof Tooltip>;

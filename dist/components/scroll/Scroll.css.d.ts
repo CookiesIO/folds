@@ -92,4 +92,4 @@ export declare const Scroll: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type ScrollVariants = RecipeVariants<typeof Scroll>;
+export type ScrollVariants = RecipeVariants<typeof Scroll>;

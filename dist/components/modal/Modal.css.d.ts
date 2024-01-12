@@ -1,16 +1,5 @@
-import { ComplexStyleRule } from "@vanilla-extract/css";
 import { RecipeVariants } from "@vanilla-extract/recipes";
 export declare const Modal: import("@vanilla-extract/recipes").RuntimeFn<{
-    variant: {
-        Background: ComplexStyleRule;
-        Surface: ComplexStyleRule;
-        SurfaceVariant: ComplexStyleRule;
-        Primary: ComplexStyleRule;
-        Secondary: ComplexStyleRule;
-        Success: ComplexStyleRule;
-        Warning: ComplexStyleRule;
-        Critical: ComplexStyleRule;
-    };
     size: {
         "300": {
             maxWidth: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
@@ -31,4 +20,4 @@ export declare const Modal: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type ModalVariants = RecipeVariants<typeof Modal>;
+export type ModalVariants = RecipeVariants<typeof Modal>;

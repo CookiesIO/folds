@@ -1,0 +1,26 @@
+import React from "react";
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, Omit<any, "as"> & {
+    size?: "D400" | "H1" | "H2" | "H3" | "H4" | "H5" | "H6" | "T500" | "T400" | "T300" | "T200" | "B500" | "B400" | "B300" | "L400" | "O400" | "C400" | "Inherit" | undefined;
+    align?: "Right" | "Left" | "Center" | "Justify" | undefined;
+    truncate?: boolean | undefined;
+    priority?: "300" | "400" | "500" | "Inherit" | "Initial" | undefined;
+} & import("..").AsProp<React.ElementType>>;
+export default _default;
+export declare const Typography: () => React.JSX.Element;
+export declare const Display400: () => React.JSX.Element;
+export declare const Heading1: () => React.JSX.Element;
+export declare const Heading2: () => React.JSX.Element;
+export declare const Heading3: () => React.JSX.Element;
+export declare const Heading4: () => React.JSX.Element;
+export declare const Heading5: () => React.JSX.Element;
+export declare const Heading6: () => React.JSX.Element;
+export declare const Text500: () => React.JSX.Element;
+export declare const Text400: () => React.JSX.Element;
+export declare const Text300: () => React.JSX.Element;
+export declare const Text200: () => React.JSX.Element;
+export declare const Button500: () => React.JSX.Element;
+export declare const Button400: () => React.JSX.Element;
+export declare const Button300: () => React.JSX.Element;
+export declare const Label400: () => React.JSX.Element;
+export declare const Overline400: () => React.JSX.Element;
+export declare const Caption400: () => React.JSX.Element;

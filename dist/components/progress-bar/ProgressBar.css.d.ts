@@ -50,5 +50,5 @@ export declare const ProgressBar: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type ProgressBarVariant = RecipeVariants<typeof ProgressBar>;
+export type ProgressBarVariant = RecipeVariants<typeof ProgressBar>;
 export declare const ProgressBarFill: string;

@@ -1,6 +1,6 @@
 import React, { SVGAttributes } from "react";
 import { IconSrc } from "./Icons";
-export declare type IconProps = SVGAttributes<SVGElement> & {
+export type IconProps = SVGAttributes<SVGElement> & {
     filled?: boolean;
     src: IconSrc;
 };

@@ -74,4 +74,4 @@ export declare const Button: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type ButtonVariants = RecipeVariants<typeof Button>;
+export type ButtonVariants = RecipeVariants<typeof Button>;

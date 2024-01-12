@@ -9,5 +9,5 @@ export declare const Switch: import("@vanilla-extract/recipes").RuntimeFn<{
         Critical: ComplexStyleRule;
     };
 }>;
-export declare type SwitchVariants = RecipeVariants<typeof Switch>;
+export type SwitchVariants = RecipeVariants<typeof Switch>;
 export declare const SwitchThumb: string;

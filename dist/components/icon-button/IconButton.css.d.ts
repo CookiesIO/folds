@@ -39,4 +39,4 @@ export declare const IconButton: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type IconButtonVariants = RecipeVariants<typeof IconButton>;
+export type IconButtonVariants = RecipeVariants<typeof IconButton>;

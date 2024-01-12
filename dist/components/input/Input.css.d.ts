@@ -51,5 +51,5 @@ export declare const Input: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type InputVariants = RecipeVariants<typeof Input>;
+export type InputVariants = RecipeVariants<typeof Input>;
 export declare const InputInput: string;

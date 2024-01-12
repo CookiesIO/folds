@@ -144,4 +144,4 @@ export declare const Text: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type TextVariants = RecipeVariants<typeof Text>;
+export type TextVariants = RecipeVariants<typeof Text>;

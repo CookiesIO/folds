@@ -1,5 +1,5 @@
 import React from "react";
-export declare const Switch: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children" | "role" | "onChange" | "onClick" | "value"> & {
+export declare const Switch: React.ForwardRefExoticComponent<Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "role" | "children" | "onChange" | "onClick" | "value"> & {
     value?: boolean | undefined;
     onChange?: ((on: boolean) => void) | undefined;
 } & {

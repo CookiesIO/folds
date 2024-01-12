@@ -29,4 +29,4 @@ export declare const Header: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type HeaderVariants = RecipeVariants<typeof Header>;
+export type HeaderVariants = RecipeVariants<typeof Header>;

@@ -12,4 +12,4 @@ export declare const Menu: import("@vanilla-extract/recipes").RuntimeFn<{
         Critical: ComplexStyleRule;
     };
 }>;
-export declare type MenuVariants = RecipeVariants<typeof Menu>;
+export type MenuVariants = RecipeVariants<typeof Menu>;

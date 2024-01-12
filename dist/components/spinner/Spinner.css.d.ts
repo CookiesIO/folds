@@ -31,7 +31,7 @@ export declare const Spinner: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type SpinnerVariants = RecipeVariants<typeof Spinner>;
+export type SpinnerVariants = RecipeVariants<typeof Spinner>;
 export declare const SpinnerSvg: string;
 export declare const SpinnerOuter: string;
 export declare const SpinnerInner: string;

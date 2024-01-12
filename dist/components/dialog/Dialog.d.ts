@@ -1,10 +1,4 @@
 import React from "react";
-export interface DialogProps {
-    open: boolean;
-    onClose: () => void;
-    onCancel?: never;
-    onClick?: never;
-}
-export declare const Dialog: <T extends React.ElementType<any> = "dialog">(props: import("..").AsOutProps<T, {
-    variant?: "Background" | "Surface" | "SurfaceVariant" | "Primary" | "Secondary" | "Success" | "Warning" | "Critical" | undefined;
-} & DialogProps>) => React.ReactElement<any, string | React.JSXElementConstructor<any>> | null;
+import { PassthroughDialogProps, BaseDialogVariantProp } from "../base-dialog";
+export type DialogProps = PassthroughDialogProps & BaseDialogVariantProp;
+export declare const Dialog: <T extends React.ElementType = "dialog">(props: import("..").AsOutProps<T, DialogProps>) => React.ReactElement<any, string | React.JSXElementConstructor<any>> | null;

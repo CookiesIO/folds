@@ -38,4 +38,4 @@ export declare const MenuItem: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type MenuItemVariants = RecipeVariants<typeof MenuItem>;
+export type MenuItemVariants = RecipeVariants<typeof MenuItem>;

@@ -11,4 +11,4 @@ export declare const Icon: import("@vanilla-extract/recipes").RuntimeFn<{
         "600": string;
     };
 }>;
-export declare type IconVariants = RecipeVariants<typeof Icon>;
+export type IconVariants = RecipeVariants<typeof Icon>;

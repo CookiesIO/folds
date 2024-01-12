@@ -31,6 +31,6 @@ export declare const Avatar: import("@vanilla-extract/recipes").RuntimeFn<{
         Pill: string;
     };
 }>;
-export declare type AvatarVariants = RecipeVariants<typeof Avatar>;
+export type AvatarVariants = RecipeVariants<typeof Avatar>;
 export declare const AvatarImage: string;
 export declare const AvatarFallback: string;

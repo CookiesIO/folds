@@ -19,4 +19,4 @@ export declare const RadioButton: import("@vanilla-extract/recipes").RuntimeFn<{
         "600": string;
     };
 }>;
-export declare type RadioButtonVariants = RecipeVariants<typeof RadioButton>;
+export type RadioButtonVariants = RecipeVariants<typeof RadioButton>;

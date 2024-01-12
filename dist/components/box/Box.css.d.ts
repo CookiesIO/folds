@@ -231,4 +231,4 @@ export declare const Box: import("@vanilla-extract/recipes").RuntimeFn<{
         };
     };
 }>;
-export declare type BoxVariants = RecipeVariants<typeof Box>;
+export type BoxVariants = RecipeVariants<typeof Box>;
