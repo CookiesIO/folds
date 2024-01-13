@@ -2374,6 +2374,8 @@ const BaseDialog = as(
       } else if (dialogRef.current.open && !open)
         dialogRef.current.close();
     }, [open, modal]);
+    if (!open)
+      return null;
     const handleClose = (evt) => {
       evt.preventDefault();
       if (open)
@@ -2400,7 +2402,7 @@ const BaseDialog = as(
         onClose: handleClose,
         onCancel: handleClose,
         onClick,
-        children: /* @__PURE__ */ jsx(Container, { className: BaseDialogContainer, disabled: !open, children })
+        children: /* @__PURE__ */ jsx(Container, { className: BaseDialogContainer, children })
       }
     );
   }
@@ -2520,8 +2522,8 @@ const PopOut = as(
     const composedRefs = useComposeRefs([dialogRef, ref]);
     const positionPopOut = useCallback(() => {
       const anchor = anchorRef.current;
-      const baseEl = dialogRef.current;
-      if (!baseEl || !anchor)
+      const dialog = dialogRef.current;
+      if (!dialog || !anchor)
         return;
       const offsets = getRelativeFixedPosition(
         anchor.getBoundingClientRect(),
@@ -2529,13 +2531,14 @@ const PopOut = as(
         align,
         offset,
         alignOffset,
-        baseEl.getBoundingClientRect()
+        dialog.getBoundingClientRect()
       );
-      baseEl.style.top = offsets.top;
-      baseEl.style.bottom = offsets.bottom;
-      baseEl.style.left = offsets.left;
-      baseEl.style.right = offsets.right;
-      baseEl.style.transform = offsets.transform;
+      dialog.style.top = offsets.top;
+      dialog.style.bottom = offsets.bottom;
+      dialog.style.left = offsets.left;
+      dialog.style.right = offsets.right;
+      dialog.style.transform = offsets.transform;
+      dialog.style.opacity = "1";
     }, [position, align, offset, alignOffset]);
     useEffect(() => {
       window.addEventListener("resize", positionPopOut);
@@ -2543,9 +2546,12 @@ const PopOut = as(
         window.removeEventListener("resize", positionPopOut);
       };
     }, [positionPopOut]);
-    useLayoutEffect(() => {
-      if (open)
-        positionPopOut();
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        if (open)
+          positionPopOut();
+      }, 0);
+      return () => clearTimeout(timeout);
     }, [open, positionPopOut]);
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       children(anchorRef),
