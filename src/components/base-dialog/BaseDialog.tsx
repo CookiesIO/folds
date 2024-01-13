@@ -51,6 +51,8 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
       } else if (dialogRef.current.open && !open) dialogRef.current.close();
     }, [open, modal]);
 
+    if (!open) return null;
+
     const handleClose = (evt: React.SyntheticEvent) => {
       evt.preventDefault();
       if (open) onClose();
@@ -78,9 +80,7 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
         onCancel={handleClose}
         onClick={onClick}
       >
-        <Container className={css.BaseDialogContainer} disabled={!open}>
-          {children}
-        </Container>
+        <Container className={css.BaseDialogContainer}>{children}</Container>
       </AsModal>
     );
   }

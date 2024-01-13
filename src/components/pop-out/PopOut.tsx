@@ -1,11 +1,4 @@
-import React, {
-  MutableRefObject,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-} from "react";
+import React, { MutableRefObject, ReactNode, useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { as } from "../as";
 import { BaseDialog, PassthroughDialogProps } from "../base-dialog";
@@ -43,8 +36,8 @@ export const PopOut = as<"dialog", PopOutProps>(
 
     const positionPopOut = useCallback(() => {
       const anchor = anchorRef.current;
-      const baseEl = dialogRef.current;
-      if (!baseEl || !anchor) return;
+      const dialog = dialogRef.current;
+      if (!dialog || !anchor) return;
 
       const offsets = getRelativeFixedPosition(
         anchor.getBoundingClientRect(),
@@ -52,13 +45,15 @@ export const PopOut = as<"dialog", PopOutProps>(
         align,
         offset,
         alignOffset,
-        baseEl.getBoundingClientRect()
+        dialog.getBoundingClientRect()
       );
-      baseEl.style.top = offsets.top;
-      baseEl.style.bottom = offsets.bottom;
-      baseEl.style.left = offsets.left;
-      baseEl.style.right = offsets.right;
-      baseEl.style.transform = offsets.transform;
+      dialog.style.top = offsets.top;
+      dialog.style.bottom = offsets.bottom;
+      dialog.style.left = offsets.left;
+      dialog.style.right = offsets.right;
+      dialog.style.transform = offsets.transform;
+      // prevent flicker when initially opening
+      dialog.style.opacity = "1";
     }, [position, align, offset, alignOffset]);
 
     useEffect(() => {
@@ -68,8 +63,12 @@ export const PopOut = as<"dialog", PopOutProps>(
       };
     }, [positionPopOut]);
 
-    useLayoutEffect(() => {
-      if (open) positionPopOut();
+    useEffect(() => {
+      // Required because the bounding client rect hasn't updated before after useLayoutEffect
+      const timeout = setTimeout(() => {
+        if (open) positionPopOut();
+      }, 0);
+      return () => clearTimeout(timeout);
     }, [open, positionPopOut]);
 
     return (
