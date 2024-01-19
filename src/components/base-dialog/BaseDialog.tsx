@@ -8,6 +8,7 @@ import { useComposeRefs } from "../../hooks/useComposeRefs";
 export type PassthroughDialogProps = {
   open: boolean;
   onClose: () => void;
+  allowClose?: () => boolean;
   onCancel?: never;
 };
 
@@ -32,6 +33,8 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
       focusLock = true,
       onClose,
       onClick: propOnClick,
+      onKeyDown: propOnKeyDown,
+      allowClose = () => true,
       children,
       ...props
     },
@@ -53,9 +56,15 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
 
     if (!open) return null;
 
-    const handleClose = (evt: React.SyntheticEvent) => {
-      evt.preventDefault();
+    const handleClose = () => {
       if (open) onClose();
+    };
+
+    const onKeyDown = (evt: React.KeyboardEvent<HTMLDialogElement>) => {
+      propOnKeyDown?.(evt);
+      if (evt.key === "Escape" && !allowClose()) {
+        evt.preventDefault();
+      }
     };
 
     const onClick = (evt: React.MouseEvent<HTMLDialogElement>) => {
@@ -66,7 +75,7 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
       const bounds = evt.currentTarget.getBoundingClientRect();
       const outOfBounds =
         x < bounds.left || x > bounds.right || y < bounds.top || y > bounds.bottom;
-      if (outOfBounds) onClose();
+      if (outOfBounds && allowClose()) onClose();
     };
 
     const Container = focusLock ? FocusLock : "div";
@@ -78,6 +87,7 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
         ref={composedRefs}
         onClose={handleClose}
         onCancel={handleClose}
+        onKeyDown={onKeyDown}
         onClick={onClick}
       >
         <Container className={css.BaseDialogContainer}>{children}</Container>
