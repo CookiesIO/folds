@@ -3,6 +3,7 @@ import * as css from "./BaseDialog.css";
 export type PassthroughDialogProps = {
     open: boolean;
     onClose: () => void;
+    allowClose?: () => boolean;
     onCancel?: never;
 };
 export interface BaseDialogVariantProp {

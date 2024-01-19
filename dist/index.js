@@ -2357,6 +2357,8 @@ const BaseDialog = as(
     focusLock = true,
     onClose,
     onClick: propOnClick,
+    onKeyDown: propOnKeyDown,
+    allowClose = () => true,
     children,
     ...props
   }, ref) => {
@@ -2376,10 +2378,15 @@ const BaseDialog = as(
     }, [open, modal]);
     if (!open)
       return null;
-    const handleClose = (evt) => {
-      evt.preventDefault();
+    const handleClose = () => {
       if (open)
         onClose();
+    };
+    const onKeyDown = (evt) => {
+      propOnKeyDown == null ? void 0 : propOnKeyDown(evt);
+      if (evt.key === "Escape" && !allowClose()) {
+        evt.preventDefault();
+      }
     };
     const onClick = (evt) => {
       propOnClick == null ? void 0 : propOnClick(evt);
@@ -2389,7 +2396,7 @@ const BaseDialog = as(
       const y = evt.clientY;
       const bounds = evt.currentTarget.getBoundingClientRect();
       const outOfBounds = x < bounds.left || x > bounds.right || y < bounds.top || y > bounds.bottom;
-      if (outOfBounds)
+      if (outOfBounds && allowClose())
         onClose();
     };
     const Container = focusLock ? FocusLock : "div";
@@ -2401,6 +2408,7 @@ const BaseDialog = as(
         ref: composedRefs,
         onClose: handleClose,
         onCancel: handleClose,
+        onKeyDown,
         onClick,
         children: /* @__PURE__ */ jsx(Container, { className: BaseDialogContainer, children })
       }

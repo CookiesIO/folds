@@ -5,3 +5,4 @@ declare const _default: import("@storybook/types").ComponentAnnotations<import("
 } & import("../base-dialog").PassthroughDialogProps & import("../base-dialog").BaseDialogVariantProp & import("..").AsProp<React.ElementType>>;
 export default _default;
 export declare const Surface: () => React.JSX.Element;
+export declare const DisallowClose: () => React.JSX.Element;
