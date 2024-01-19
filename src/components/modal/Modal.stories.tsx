@@ -49,3 +49,35 @@ export const Surface = () => {
     </>
   );
 };
+
+export const DisallowClose = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <IconButton variant="SurfaceVariant" onClick={() => setOpen(!open)}>
+        <Icon src={Icons.VerticalDots} />
+      </IconButton>
+      <Modal size="300" open={open} onClose={() => setOpen(false)} allowClose={() => false}>
+        <Header
+          size="600"
+          style={{ padding: `0 ${config.space.S500}`, marginTop: config.space.S100 }}
+        >
+          <Text size="H4" truncate>
+            Modal
+          </Text>
+        </Header>
+        <Box
+          direction="Column"
+          gap="500"
+          style={{ padding: `0 ${config.space.S500} ${config.space.S500}` }}
+        >
+          <Text size="T300">This modal can only be closed by the button below</Text>
+          <Button variant="Secondary" fill="Soft" onClick={() => setOpen(false)}>
+            <Text size="B400">Cancel</Text>
+          </Button>
+        </Box>
+      </Modal>
+    </>
+  );
+};
