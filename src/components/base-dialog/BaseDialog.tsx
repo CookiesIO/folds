@@ -6,7 +6,7 @@ import * as css from "./BaseDialog.css";
 import { useComposeRefs } from "../../hooks/useComposeRefs";
 
 export type PassthroughDialogProps = {
-  open: boolean;
+  open?: boolean;
   onClose: () => void;
   allowClose?: () => boolean;
   onCancel?: never;
@@ -28,7 +28,7 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
       className,
       variant,
       backdrop,
-      open,
+      open = true,
       modal = true,
       focusLock = true,
       onClose,
@@ -54,22 +54,20 @@ export const BaseDialog = as<"dialog", css.BaseDialogVariants & BaseDialogProps>
       } else if (dialogRef.current.open && !open) dialogRef.current.close();
     }, [open, modal]);
 
-    if (!open) return null;
-
     const handleClose = () => {
       if (open) onClose();
     };
 
     const onKeyDown = (evt: React.KeyboardEvent<HTMLDialogElement>) => {
       propOnKeyDown?.(evt);
-      if (evt.key === "Escape" && !allowClose()) {
+      if (!evt.defaultPrevented && evt.key === "Escape" && !allowClose()) {
         evt.preventDefault();
       }
     };
 
     const onClick = (evt: React.MouseEvent<HTMLDialogElement>) => {
       propOnClick?.(evt);
-      if (evt.target !== evt.currentTarget) return;
+      if (evt.defaultPrevented || evt.target !== evt.currentTarget) return;
       const x = evt.clientX;
       const y = evt.clientY;
       const bounds = evt.currentTarget.getBoundingClientRect();
