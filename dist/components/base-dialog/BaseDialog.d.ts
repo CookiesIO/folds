@@ -1,7 +1,7 @@
 import React from "react";
 import * as css from "./BaseDialog.css";
 export type PassthroughDialogProps = {
-    open: boolean;
+    open?: boolean;
     onClose: () => void;
     allowClose?: () => boolean;
     onCancel?: never;

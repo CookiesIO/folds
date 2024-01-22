@@ -2352,7 +2352,7 @@ const BaseDialog = as(
     className,
     variant,
     backdrop,
-    open,
+    open = true,
     modal = true,
     focusLock = true,
     onClose,
@@ -2376,21 +2376,19 @@ const BaseDialog = as(
       } else if (dialogRef.current.open && !open)
         dialogRef.current.close();
     }, [open, modal]);
-    if (!open)
-      return null;
     const handleClose = () => {
       if (open)
         onClose();
     };
     const onKeyDown = (evt) => {
       propOnKeyDown == null ? void 0 : propOnKeyDown(evt);
-      if (evt.key === "Escape" && !allowClose()) {
+      if (!evt.defaultPrevented && evt.key === "Escape" && !allowClose()) {
         evt.preventDefault();
       }
     };
     const onClick = (evt) => {
       propOnClick == null ? void 0 : propOnClick(evt);
-      if (evt.target !== evt.currentTarget)
+      if (evt.defaultPrevented || evt.target !== evt.currentTarget)
         return;
       const x = evt.clientX;
       const y = evt.clientY;
