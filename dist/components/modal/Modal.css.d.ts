@@ -16,7 +16,7 @@ export declare const Modal: import("@vanilla-extract/recipes").RuntimeFn<{
     };
     flexHeight: {
         true: {
-            height: "unset";
+            height: "fit-content";
         };
     };
 }>;

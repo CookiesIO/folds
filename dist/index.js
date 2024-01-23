@@ -2514,7 +2514,7 @@ var PopOut$1 = "_1v6ozra0";
 const PopOut = as(
   ({
     className,
-    open,
+    open = true,
     position = "Bottom",
     align = "Center",
     offset = 10,
