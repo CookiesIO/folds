@@ -27,7 +27,7 @@ export const Modal = recipe({
     },
     flexHeight: {
       true: {
-        height: "unset",
+        height: "fit-content",
       },
     },
   },
